@@ -8,6 +8,7 @@ def show_entries():
     # セッションでlogged_inがTrueでない場合はログイン画面にリダイレクトしている
     if not session.get('logged_in'):
         return redirect('/login')
+    # リクエストで受け取ったモデルを、id降順で全件取得してhtmlに渡す
     entries = Entry.query.order_by(Entry.id.desc()).all()
     return render_template('entries/index.html', entries=entries)
 
@@ -21,7 +22,7 @@ def new_entry():
 def add_entry():
     if not session.get('logged_in'):
         return redirect(url_for('login'))
-    # Entryモデルインスタンスを作成してINSERT対象カラムにフォームから送信された値を代入する
+    # Entryモデルインスタンスを作成してINSERT対象カラムにリクエストで受け取った値を代入する
     entry = Entry(
         title=request.form['title'],
         text=request.form['text']
