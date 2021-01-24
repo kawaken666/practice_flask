@@ -1,5 +1,5 @@
 from flask_blog import db
-from datatime import datetime
+from datetime import datetime
 
 class Entry(db.Model):
     __tablename__ = 'entries'
@@ -11,7 +11,7 @@ class Entry(db.Model):
 def __init__(self, title=None, text=None):
     self.title = title
     self.text = text
-    self.created_at = datatime.utcnow()
+    self.created_at = datetime.utcnow()
 
 def __repr__(self):
     return 'Entry id:{} title:{} text:{}'.format_map(self.id, self.title, self.text)
