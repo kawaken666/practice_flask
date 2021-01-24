@@ -13,17 +13,20 @@ def login():
     error = None
     if request.method == 'POST':
         if request.form['username'] != app.config['USERNAME']:
-            print('ユーザ名が異なります')
+            # flashにmessageを格納する
+            flash('ユーザ名が異なります')
         elif request.form['password'] != app.config['PASSWORD']:
-            print('パスワードが異なります')
+            flash('パスワードが異なります')
         else:
             # セッションにlogged_in=Trueを渡す
             session['logged_in'] = True
-            return redirect('/')
+            flash('ログインしました')
+            return redirect(url_for('show_entries'))
     return render_template('login.html')
 
 @app.route('/logout')
 def logout():
     # ログアウト時、セッションのlogged_inをNoneに更新する
     session.pop('logged_in', None)
-    return redirect('/')
+    flash('ログアウトしました')
+    return redirect(url_for('show_entries'))
