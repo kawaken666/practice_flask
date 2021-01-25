@@ -6,11 +6,13 @@
 <script src="https://code.jquery.com/jquery3.2.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<link href="https://fonts.googleapis.com/earlyaccess/mplus1p.css" rel="stylesheet" type="text/css">
+<link rel=stylesheet href="{{url_for('static',filename='style.css')}}">
 
 <div class="container">
     <!-ヘッダーバー->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href={{url_for('show_entries')}}>Flask Blog</a>
+        <a class="navbar-brand" href={{url_for('entry.show_entries')}}>Flask Blog</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
                 aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -20,14 +22,14 @@
             <ul class="nav navbar-nav navbar-right">
                 {% if not session.logged_in %}
                 <li class="nav-item">
-                    <a class="nav-link" href={{url_for('login')}}>ログイン</a>
+                    <a class="nav-link" href={{url_for('view.login')}}>ログイン</a>
                 </li>
                 {% else %}
                 <li class="nav-item">
-                    <a class="nav-link" href="{{url_for('new_entry')}}">新規投稿</a>
+                    <a class="nav-link" href="{{url_for('entry.new_entry')}}">新規投稿</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href={{url_for('logout')}}>ログアウト</a>
+                    <a class="nav-link" href={{url_for('view.logout')}}>ログアウト</a>
                 </li>
                 {% endif %}
             </ul>
